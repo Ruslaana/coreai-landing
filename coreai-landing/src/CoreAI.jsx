@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   FaFacebookF,
@@ -6,8 +5,6 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from 'react-icons/fa';
-
-import { ChevronRight } from 'lucide-react';
 
 function useParallax(range = 40) {
   const { scrollYProgress } = useScroll();
@@ -67,11 +64,16 @@ const DotsSep = () => (
 );
 
 export default function CoreAI() {
-  const parallaxY = useParallax(55);
+  const parallaxBg = useParallax(12);
+  const parallaxSlow = useParallax(18);
+  const parallaxMed = useParallax(32);
+  const parallaxFast = useParallax(48);
+  const parallaxProblemsImg = useParallax(22);
 
   return (
     <div className="min-h-screen bg-[#e7dfcc] text-[#0e0f0f]">
       {/* ================= HEADER ================= */}
+
       <header
         role="banner"
         className="relative border-b border-black"
@@ -132,9 +134,9 @@ export default function CoreAI() {
         {/* горошок */}
         <div className="pointer-events-none absolute right-0 top-0 h-full w-1/4 bg-[#fdfbea] bg-[radial-gradient(rgba(0,0,0,0.28)_1px,transparent_1px)] [background-size:10px_10px]" />
 
-        <div
+        <motion.div
           className="pointer-events-none absolute left-0 top-0 h-full w-3/4 bg-cover bg-center opacity-30 blur-[2px]"
-          style={{ backgroundImage: 'url(/img/afenticAi2.png)' }}
+          style={{ backgroundImage: 'url(/img/afenticAi2.png)', y: parallaxBg }}
         />
 
         <div className="relative mx-auto max-w-7xl px-5">
@@ -158,30 +160,35 @@ export default function CoreAI() {
                 tag: 'Agentic AI Strategy',
                 pill: 'bg-[#e6e6e6]',
               },
-            ].map((s, i) => (
-              <motion.figure
-                key={s.tag}
-                className="relative"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <img
-                  src={s.img}
-                  alt={s.alt}
-                  className="block aspect-[16/9] w-full object-cover"
-                  loading="lazy"
-                />
-                <figcaption className="pointer-events-none absolute -right-3 bottom-5 md:bottom-6">
-                  <span
-                    className={`inline-block rounded-full border border-black px-7 py-[6px] text-sm shadow-[4px_4px_0_rgba(0,0,0,0.85)] ${s.pill}`}
-                  >
-                    {s.tag}
-                  </span>
-                </figcaption>
-              </motion.figure>
-            ))}
+            ].map((s, i) => {
+              const y =
+                i === 0 ? parallaxSlow : i === 1 ? parallaxMed : parallaxFast;
+              return (
+                <motion.figure
+                  key={s.tag}
+                  className="relative"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <motion.img
+                    src={s.img}
+                    alt={s.alt}
+                    className="block aspect-[16/9] w-full object-cover"
+                    loading="lazy"
+                    style={{ y }}
+                  />
+                  <figcaption className="pointer-events-none absolute -right-3 bottom-5 md:bottom-6">
+                    <span
+                      className={`inline-block rounded-full border border-black px-7 py-[6px] text-sm shadow-[4px_4px_0_rgba(0,0,0,0.85)] ${s.pill}`}
+                    >
+                      {s.tag}
+                    </span>
+                  </figcaption>
+                </motion.figure>
+              );
+            })}
           </div>
 
           <div className="relative mt-10 flex w-full items-center justify-center">
@@ -227,9 +234,12 @@ export default function CoreAI() {
 
       <section id="problems" className="bg-black text-white">
         <div className="grid grid-cols-1 gap-0 md:grid-cols-[0.4fr_0.6fr]">
-          <div
+          <motion.div
             className="h-full w-full bg-cover bg-center"
-            style={{ backgroundImage: "url('/img/afenticAi.png')" }}
+            style={{
+              backgroundImage: "url('/img/afenticAi.png')",
+              y: parallaxProblemsImg,
+            }}
             role="img"
             aria-label="Agents collage"
           />
@@ -279,7 +289,7 @@ export default function CoreAI() {
                 2030.
               </p>
               <p className="leading-relaxed">
-                The combined LLM + Agentic AI market may expand from ~{' '}
+                The combined LLM + Agentic AI market may expand from{' '}
                 <span className="font-semibold">$12.2B</span> (2024) to over{' '}
                 <span className="font-semibold">$232B</span> by 2030–2034 with
                 CAGRs &gt; 35–44%.
@@ -356,7 +366,9 @@ export default function CoreAI() {
 
                     <div className="p-4">
                       <h3 className="text-xl font-semibold">{c.title}</h3>
-                      <p className="mt-1 text-sm text-slate-700">{c.text}</p>
+                      <p className="mt-1 text-sm leading-6 text-slate-700">
+                        {c.text}
+                      </p>
                       <div className="mt-3">
                         <button className="font-mono text-sm rounded-full bg-[#ffe59a] px-8 py-2 text-black shadow-[4px_4px_0_rgba(0,0,0,0.85)]">
                           More Information
@@ -371,7 +383,8 @@ export default function CoreAI() {
                 <h2 className="text-3xl font-semibold">
                   AI Social Assistant Ecosystem
                 </h2>
-                <figure className="my-4">
+
+                <figure className="my-6">
                   <img
                     src="/img/afenticAi2.png"
                     alt="AI Social Assistant Ecosystem"
@@ -379,29 +392,33 @@ export default function CoreAI() {
                     loading="lazy"
                   />
                 </figure>
+
                 <div className="max-w-[430px]">
-                  <ul className="mb-3 space-y-2 font-mono text-sm text-[#1b5c6b]">
+                  <ul className="mb-6 space-y-2 font-mono text-sm text-[#1b5c6b]">
                     <li>+ Over 500 agents connected into 1 system</li>
                     <li>+ Orchestrated domain-specific agents</li>
                     <li>+ AI-native developers trained in-house</li>
                     <li>+ Hybrid Business Model</li>
                   </ul>
-                  <p className="mb-3 font-mono leading-relaxed text-sm text-[#1b5c6b]">
+
+                  <p className="mb-6 font-mono leading-relaxed text-sm text-[#1b5c6b]">
                     AI Social Assistant Ecosystem is an agentic platform that
                     helps newcomers navigate state welfare, legal, and
                     bureaucratic complexity — fast and reliably..
                   </p>
+
                   <section>
                     <h4 className="font-semibold">Problem</h4>
-                    <p className="mb-3 font-mono leading-relaxed text-sm text-[#1b5c6b]">
+                    <p className="mb-4 font-mono leading-relaxed text-sm text-[#1b5c6b]">
                       Language barriers, limited immediate help, long request
                       cycles, and unfamiliarity with public systems create
                       delays and poor outcomes.
                     </p>
                   </section>
+
                   <section>
                     <h4 className="font-semibold">Solution</h4>
-                    <p className="mb-3 font-mono leading-relaxed text-sm text-[#1b5c6b]">
+                    <p className="mb-4 font-mono leading-relaxed text-sm text-[#1b5c6b]">
                       One ecosystem with 100-language accessibility, real-time
                       verified legal/public sources, and step-by-step guidance.
                       Context-aware suggestions, personal use-case analysis, and
@@ -409,6 +426,7 @@ export default function CoreAI() {
                       Europe.
                     </p>
                   </section>
+
                   <button className="rounded-full border border-black bg-[#e4e5e7] px-8 py-2 text-black font-mono">
                     Read more cases
                   </button>
@@ -422,7 +440,7 @@ export default function CoreAI() {
       <DotsSep />
 
       <section className="bg-black h-[500px]">
-        <SectionContainer></SectionContainer>
+        <SectionContainer />
       </section>
 
       <DotsSep />
