@@ -136,26 +136,26 @@ export default function CoreAI() {
 
         <motion.div
           className="pointer-events-none absolute left-0 top-0 h-full w-3/4 bg-cover bg-center opacity-30 blur-[2px]"
-          style={{ backgroundImage: 'url(/img/afenticAi2.png)', y: parallaxBg }}
+          style={{ backgroundImage: 'url(img/afenticAi2.png)', y: parallaxBg }}
         />
 
         <div className="relative mx-auto max-w-7xl px-5">
           <div className="grid grid-cols-1 gap-7 md:grid-cols-3">
             {[
               {
-                img: '/img/header1.png',
+                img: 'img/header1.png',
                 alt: 'Process Automation',
                 tag: 'Process Automation',
                 pill: 'bg-[#9fd7ff]',
               },
               {
-                img: '/img/header2.png',
+                img: 'img/header2.png',
                 alt: 'Digital Coworkers',
                 tag: 'Digital Coworkers',
                 pill: 'bg-[#ffe59a]',
               },
               {
-                img: '/img/header3.png',
+                img: 'img/header3.png',
                 alt: 'Agentic AI Strategy',
                 tag: 'Agentic AI Strategy',
                 pill: 'bg-[#e6e6e6]',
@@ -220,7 +220,7 @@ export default function CoreAI() {
 
             <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-end pr-5">
               <img
-                src="/img/aws.png"
+                src="img/aws.png"
                 alt="AWS Partner"
                 className="w-[140px] rounded-md bg-white p-2 shadow"
                 loading="lazy"
@@ -237,7 +237,7 @@ export default function CoreAI() {
           <motion.div
             className="h-full w-full bg-cover bg-center"
             style={{
-              backgroundImage: "url('/img/afenticAi.png')",
+              backgroundImage: "url('img/afenticAi.png')",
               y: parallaxProblemsImg,
             }}
             role="img"
@@ -341,12 +341,12 @@ export default function CoreAI() {
               <div className="grid gap-6">
                 {[
                   {
-                    img: '/img/case1.png',
+                    img: 'img/case1.png',
                     title: 'Production Planning',
                     text: 'Agents coordinate production schedules across multiple lines, optimize material flow, and auto-adjust capacity from demand & supply constraints.',
                   },
                   {
-                    img: '/img/case2.png',
+                    img: 'img/case2.png',
                     title: 'Demand & Supply Forecasting',
                     text: 'Forecast across retail & loyalty, accounting for seasonality, promos, and market trends — then coordinate execution.',
                   },
@@ -386,7 +386,7 @@ export default function CoreAI() {
 
                 <figure className="my-6">
                   <img
-                    src="/img/afenticAi2.png"
+                    src="img/afenticAi2.png"
                     alt="AI Social Assistant Ecosystem"
                     className="w-full max-w-[420px] border border-black"
                     loading="lazy"
