@@ -1,1 +1,0 @@
-# coreai-landing
